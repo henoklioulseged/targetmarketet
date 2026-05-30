@@ -7,6 +7,8 @@ import {
 
 alert("IMPORT OK");
 
+alert("DB STATUS: " + typeof window.db);
+
 const buttons = document.querySelectorAll("button");
 const postBtn = buttons[1];
 
@@ -14,6 +16,8 @@ postBtn.addEventListener("click", async () => {
   alert("BUTTON CLICKED");
 
   try {
+    alert("TRY START");
+
     await addDoc(collection(window.db, "posts"), {
       name: "Test"
     });
@@ -21,6 +25,5 @@ postBtn.addEventListener("click", async () => {
     alert("SUCCESS");
   } catch (error) {
     alert("ERROR: " + error.message);
-    console.error(error);
   }
 });
