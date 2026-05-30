@@ -3,7 +3,8 @@ import {
   addDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const postBtn = document.querySelector("button");
+const buttons = document.querySelectorAll("button");
+const postBtn = buttons[1];
 
 postBtn.addEventListener("click", async () => {
   try {
