@@ -1,29 +1,26 @@
-alert("APP STARTED");
-
 import {
   collection,
   addDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-alert("IMPORT OK");
+window.onload = () => {
+  const buttons = document.querySelectorAll("button");
+  const postBtn = buttons[1];
 
-alert("DB STATUS: " + typeof window.db);
+  postBtn.addEventListener("click", async () => {
+    try {
+      const docRef = await addDoc(collection(window.db, "posts"), {
+        seller: "Test User",
+        phone: "0948779378",
+        product: "Test Product",
+        price: 100,
+        createdAt: new Date()
+      });
 
-const buttons = document.querySelectorAll("button");
-const postBtn = buttons[1];
-
-postBtn.addEventListener("click", async () => {
-  alert("BUTTON CLICKED");
-
-  try {
-    alert("TRY START");
-
-    await addDoc(collection(window.db, "posts"), {
-      name: "Test"
-    });
-
-    alert("SUCCESS");
-  } catch (error) {
-    alert("ERROR: " + error.message);
-  }
-});
+      alert("SUCCESS: " + docRef.id);
+    } catch (error) {
+      alert("ERROR: " + error.message);
+      console.error(error);
+    }
+  });
+};
