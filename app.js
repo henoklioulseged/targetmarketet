@@ -23,6 +23,7 @@ try {
     product,
     price,
     description,
+    approved: false,
     createdAt: new Date()
   });
 
